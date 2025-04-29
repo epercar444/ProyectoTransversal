@@ -1,17 +1,17 @@
 package controler;
 
-import dao.JDBCDaoEquipo;
+import dao.JDBCDaoPuntuacion;
 
 public class Pruebasql {
 
 	public static void main(String[] args) {
-		/*try {
-			JDBCDaoEquipo p = new JDBCDaoEquipo();
-			p.insertaEquipo(null);
+		try {
+			JDBCDaoPuntuacion p = new JDBCDaoPuntuacion();
+			p.insertaPuntuacion();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}*/
+		}
 		/*try {
 			JDBCDaoEquipo p = new JDBCDaoEquipo();
 			p.eliminaEquipo(null);
@@ -26,13 +26,13 @@ public class Pruebasql {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}*/
-		try {
+		/*try {
 			JDBCDaoEquipo p = new JDBCDaoEquipo();
 			p.actualizaDatos(null);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 	}
 
 }

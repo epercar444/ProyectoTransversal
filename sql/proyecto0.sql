@@ -59,10 +59,4 @@ INSERT INTO puntuacion (idequipo1, idequipo2, puntuacion1, puntuacion2, observac
 
 alter table equipo ADD CONSTRAINT nombre_unico UNIQUE (Nombre);
 alter table prueba ADD CONSTRAINT prueba_unica UNIQUE (idfase, idprueba);
-alter table puntuacion ADD CONSTRAINT puntuacion_unico UNIQUE (idpuntuacion,idequipo1, idequipo2);
-
-delete from equipo where idEquipo = 16;
-
-select nombre from equipo;
-
-update equipo set nombre = "Osasuna" where idEquipo = 11;
+alter table puntuacion ADD CONSTRAINT puntuacion_unico UNIQUE (idequipo1, idequipo2, puntuacion1, puntuacion2);
