@@ -16,8 +16,10 @@ public class JDBCDaoEquipo extends JdbcDao{
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void insertaEquipo(Equipo e1) {
-		String query = "INSERT INTO equipo (Nombre, anyo_creacion) VALUES ('Sevilla', 1936)";
+	public void insertaEquipo() {
+		String nombreEquipo = "Sevilla";
+		int anioCreacion = 1936;
+		String query = "INSERT INTO equipo (Nombre, anyo_creacion) VALUES ('" + nombreEquipo + "', " + anioCreacion + ")";
 		Connection conn = null;
 		Statement stmt = null;
 

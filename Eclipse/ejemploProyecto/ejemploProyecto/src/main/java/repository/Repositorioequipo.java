@@ -4,9 +4,9 @@ import dao.JDBCDaoEquipo;
 import models.Equipo;
   
 public class Repositorioequipo { 
-	public void altaEquipo(Equipo e) throws Exception {
+	public void altaEquipo() throws Exception {
 		   JDBCDaoEquipo p = new JDBCDaoEquipo();
-		   p.insertaEquipo(e);
+		   p.insertaEquipo();
 	}
 	public void eliminaEquipo(Equipo e) throws Exception {
 		   JDBCDaoEquipo p = new JDBCDaoEquipo();

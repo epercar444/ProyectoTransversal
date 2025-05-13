@@ -1,5 +1,7 @@
 package models;
 
+import dao.FasesporEquipo;
+
 public class Puntuacion {
 	    private int idpuntuacion;
 	    private Equipo equipo1;
@@ -10,6 +12,8 @@ public class Puntuacion {
 	    private String observacion2;
 	    private String penalizacion1;
 	    private String penalizacion2;
+	    private FasesporEquipo fase;
+	    private int equipoGanador;
 		public int getIdpuntuacion() {
 			return idpuntuacion;
 		}
@@ -64,8 +68,21 @@ public class Puntuacion {
 		public void setPenalizacion2(String penalizacion2) {
 			this.penalizacion2 = penalizacion2;
 		}
+		
+		public FasesporEquipo getFase() {
+			return fase;
+		}
+		public void setFase(FasesporEquipo fase) {
+			this.fase = fase;
+		}
+		public int getEquipoGanador() {
+			return equipoGanador;
+		}
+		public void setEquipoGanador(int equipoGanador) {
+			this.equipoGanador = equipoGanador;
+		}
 		public Puntuacion(int idpuntuacion, Equipo equipo1, Equipo equipo2, int puntuacion1, int puntuacion2,
-				String observacion1, String observacion2, String penalizacion1, String penalizacion2) {
+				String observacion1, String observacion2, String penalizacion1, String penalizacion2,FasesporEquipo fase,int equipoGanador) {
 			super();
 			this.idpuntuacion = idpuntuacion;
 			this.equipo1 = equipo1;
@@ -76,6 +93,8 @@ public class Puntuacion {
 			this.observacion2 = observacion2;
 			this.penalizacion1 = penalizacion1;
 			this.penalizacion2 = penalizacion2;
+			this.fase = fase;
+			this.equipoGanador = equipoGanador;
 		}
 
 	}
