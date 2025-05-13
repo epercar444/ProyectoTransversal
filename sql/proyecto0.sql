@@ -25,7 +25,27 @@ create table puntuacion (
     foreign key (idequipo1) references equipo(idequipo),
     foreign key (idequipo2) references equipo(idequipo)
 );
-
+create table participante (
+idparticipante int auto_increment primary key,
+nombre varchar(50),
+idequipo int not null,
+foreign key (idequipo) references equipo(idequipo)
+);
+create table debate (
+iddebate int auto_increment primary key,
+idequipo1 int not null,
+idequipo2 int not null,
+fase varchar(255) not null
+);
+create table cruce (
+idcruce int auto_increment primary key,
+idequipo1 int not null,
+idequipo2 int not null,
+observaciones varchar(255),
+foreign key (idequipo1) references equipo(idequipo),
+foreign key (idequipo2) references equipo(idequipo)
+);
+drop table equipo;
 INSERT INTO equipo (Nombre, anyo_creacion) VALUES ('Madrid', 1945);
 INSERT INTO equipo (Nombre, anyo_creacion) VALUES ('Barcelona', 1933);
 INSERT INTO equipo (Nombre, anyo_creacion) VALUES ('Betis', 1907);
@@ -57,6 +77,45 @@ INSERT INTO puntuacion (idequipo1, idequipo2, puntuacion1, puntuacion2, observac
 INSERT INTO puntuacion (idequipo1, idequipo2, puntuacion1, puntuacion2, observacion1, observacion2, penalizacion1, penalizacion2) VALUES (9, 10, 70, 75, 'Necesita mejorar estructura', 'Uso adecuado de ejemplos', 'Advertencia por interrupciones', 'Ninguna');
 INSERT INTO puntuacion (idequipo1, idequipo2, puntuacion1, puntuacion2, observacion1, observacion2, penalizacion1, penalizacion2) VALUES (11, 12, 95, 93, 'Oratoria destacada', 'Muy buenos datos', 'Ninguna', 'Ninguna');
 
+
+INSERT INTO participante (nombre, idequipo) VALUES ('Lucía Gómez', 1);
+INSERT INTO participante (nombre, idequipo) VALUES ('Carlos Pérez', 2);
+INSERT INTO participante (nombre, idequipo) VALUES ('Marta Ruiz', 1);
+INSERT INTO participante (nombre, idequipo) VALUES ('Javier Torres', 3);
+INSERT INTO participante (nombre, idequipo) VALUES ('Elena Díaz', 2);
+
+
 alter table equipo ADD CONSTRAINT nombre_unico UNIQUE (Nombre);
 alter table prueba ADD CONSTRAINT prueba_unica UNIQUE (idfase, idprueba);
 alter table puntuacion ADD CONSTRAINT puntuacion_unico UNIQUE (idequipo1, idequipo2, puntuacion1, puntuacion2);
+alter table cruce add constraint cruce_unico unique (idcruce,idequipo1,idequipo2);
+alter table debate add constraint debate_unico unique (iddebate,idequipo1,idequipo2);
+
+alter table puntuacion add column fase varchar(50);
+alter table puntuacion add column idprueba int(3);
+alter table puntuacion add column equipoGanador int (3);
+alter table puntuacion add column mejorOrador varchar(50);
+alter table puntuacion add column listaParticipantes1 varchar(255);
+alter table puntuacion add column listaParticipantes2 varchar(255);
+
+alter table prueba drop column idfase;
+alter table prueba add column fase varchar(50);
+
+ALTER TABLE Puntuacion ADD CONSTRAINT fk_mejorPuntuacion FOREIGN KEY (equipoGanador) REFERENCES Equipo(idEquipo);
+alter table puntuacion add constraint fk_mejorOrador foreign key (idprueba) references prueba(idprueba);
+
+select mejorOrador from prueba where idprueba = 1;
+select idparticipante from participante where idequipo = 1;
+
+ALTER TABLE puntuacion
+DROP FOREIGN KEY fk_mejorPuntuacion;
+
+ALTER TABLE Debate ADD CONSTRAINT fk_equipo1 FOREIGN KEY (idequipo1) REFERENCES Equipo(idEquipo);
+ALTER TABLE Debate ADD CONSTRAINT fk_equipo2 FOREIGN KEY (idequipo2) REFERENCES Equipo(idEquipo);
+
+INSERT INTO cruce (idequipo1, idequipo2, observaciones) VALUES (1, 2, 'Nada');
+INSERT INTO cruce (idequipo1, idequipo2, observaciones) VALUES (3, 4, 'Nulo');
+INSERT INTO cruce (idequipo1, idequipo2, observaciones) VALUES (1, 3, 'Verdad');
+INSERT INTO cruce (idequipo1, idequipo2, observaciones) VALUES (2, 4, 'False');
+INSERT INTO cruce (idequipo1, idequipo2, observaciones) VALUES (1, 4, 'True');
+

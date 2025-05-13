@@ -17,14 +17,16 @@ public class JDBCDaoPuntuacion extends JdbcDao{
 		boolean mejorOrador = devuelveSiMejorOrador(idprueba);
 		List<String> listaParticipantesEquipo1 = listarParticipantes(idprueba,idequipo1);
 		List<String> listaParticipantesEquipo2 = listarParticipantes(idprueba,idequipo2);
-		String query = "INSERT INTO puntuacion (idequipo1, idequipo2, puntuacion1, puntuacion2, observacion1, observacion2, penalizacion1, penalizacion2,fase,idprueba,equipoGanador,mejorOrador,listaParticipantesEquipo1,listaParticipantesEquipo2) VALUES ("+idequipo1+","+idequipo2+","+puntuacion1+","+puntuacion2+","+ observacion1+","+ observacion2+","+ penalizacion1+","+ penalizacion2+","+fase+","+idprueba+","+equipoGanador+","+mejorOrador+","+listaParticipantesEquipo1+","+listaParticipantesEquipo2+")";
+	    String lista1 = String.join(",", listaParticipantesEquipo1);
+	    String lista2 = String.join(",", listaParticipantesEquipo2);
+	    String query = "INSERT INTO puntuacion (idequipo1, idequipo2, puntuacion1, puntuacion2, observacion1, observacion2, penalizacion1, penalizacion2, fase, idprueba, equipoGanador, mejorOrador, listaParticipantes1, listaParticipantes2) VALUES ("+ idequipo1 + ", "+ idequipo2 + ", "+ puntuacion1 + ", "+ puntuacion2 + ", "+ "'" + observacion1 + "', "+ "'" + observacion2 + "', "+ "'" + penalizacion1 + "', "+ "'" + penalizacion2 + "', "+ "'" + fase.toString() + "', "+ idprueba + ", "+ equipoGanador + ", "+ mejorOrador + ", "+ "'" + lista1 + "', "+ "'" + lista2 + "')";
 		Connection conn = null;
 		Statement stmt = null;
 		// si mejor orador: listar participantes
 		try {
 			conn = this.getConnection(); // Método para obtener la conexión
 			stmt = conn.createStatement();
-			stmt.executeQuery(query);
+			stmt.execute(query);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -38,7 +40,7 @@ public class JDBCDaoPuntuacion extends JdbcDao{
 			equipoGanador = idequipo1;
 		}
 		else if (puntuacion1 == puntuacion2) {
-			equipoGanador = (Integer) null;
+			equipoGanador = 0;
 		}
 		else {
 			equipoGanador = idequipo2;
