@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<link rel="stylesheet" th:href="@{/CSS/RegistroPuntuaciones.css}">
+</head>
+
+<body>
+     <header>
+        <a href="https://blogsaverroes.juntadeandalucia.es/iestorrredelosguzmanes/" target="_blank">
+           <img th:src="@{/Fotos/logo.svg}"  alt="Logotipo Instituto" id="logo">
+        </a>
+     <div class="fondo" style="
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('/oratoria/Fotos/instituto.jpg') center/cover no-repeat;
+    opacity: 0.3;
+    z-index: -1;">
+	</div>
+        <h1>Torneo de debate</h1>
+        <div class="contenedorBotonInicio">
+            <button onclick="goHome()">Inicio</button>
+            <button onclick="window.location.href='PaginaBase'">Atrás</button> 
+        </div>
+    </header>
+    
+<main style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);border-radius:15px;width:50%;height:50%;padding:40px 20px;background-color:white;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;box-shadow:0 4px 10px rgba(0,0,0,0.2);">
+        <h2 style = "margin-bottom: 20px;color: black;font-size: 48px;font-weight: bold;font-style: italic;">Registrar Puntuación</h2>
+        <form method="post" action="RegistroPuntuacionServlet">
+            <label for="idequipo1" style = "font-size: 16px; color: #555; text-align: left; width: 100%;margin-bottom: 8px;">idEquipo1:</label>
+            <input type="number" id="idequipo1" name="idequipo1" required><br>
+
+            <label for="idequipo2" style = "font-size: 16px; color: #555; text-align: left; width: 100%;margin-bottom: 8px;">idEquipo2:</label>
+            <input type="number" id="idequipo2" name="idequipo2" required><br>
+
+            <label for="puntuacion1" style = "font-size: 16px; color: #555; text-align: left; width: 100%;margin-bottom: 8px;">puntuacionEquipo1:</label>
+            <input type="number" id="puntuacion1" name="puntuacion1" required><br>
+
+            <label for="puntuacion2" style = "font-size: 16px; color: #555; text-align: left; width: 100%;margin-bottom: 8px;">puntuacionEquipo2:</label>
+            <input type="number" id="puntuacion2" name="puntuacion2" required><br>
+
+            <label for="observacion1" style = "font-size: 16px; color: #555; text-align: left; width: 100%;margin-bottom: 8px;">observacionEquipo1:</label>
+            <input type="text" id="observacion1" name="observacion1"><br>
+
+            <label for="observacion2" style = "font-size: 16px; color: #555; text-align: left; width: 100%;margin-bottom: 8px;">observacionEquipo2:</label>
+            <input type="text" id="observacion2" name="observacion2"><br>
+
+            <label for="penalizacion1" style = "font-size: 16px; color: #555; text-align: left; width: 100%;margin-bottom: 8px;">penalizaciónEquipo1:</label>
+            <input type="text" id="penalizacion1" name="penalizacion1"><br>
+
+            <label for="penalizacion2" style = "font-size: 16px; color: #555; text-align: left; width: 100%;margin-bottom: 8px;">penalizaciónEquipo2:</label>
+            <input type="text" id="penalizacion2" name="penalizacion2"><br>
+
+            <label for="idprueba" style = "font-size: 16px; color: #555; text-align: left; width: 100%;margin-bottom: 8px;">idPrueba:</label>
+            <input type="number" id="idprueba" name="idprueba" required><br>
+
+            <label for="fase" style = "font-size: 16px; color: #555; text-align: left; width: 100%;margin-bottom: 8px;" >Fase:</label>
+            <select name="fase" id="fase" required>
+                <option value="PrimeraFase">PrimeraFase</option>
+                <option value="SegundaFase">SegundaFase</option>
+                <option value="Semifinal">Semifinal</option>
+                <option value="Final">Final</option>
+            </select><br>
+
+            <button type="submit" onclick="goHome()">Registrar Puntuación</button>
+        </form>
+    </main>
+        <script>
+        function goHome() {
+            window.location.href = "indexE";
+        }
+    </script>
+</body>
+</html>
